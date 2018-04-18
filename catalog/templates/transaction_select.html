@@ -1,0 +1,11 @@
+{% extends "base_generic_owner.html" %}
+{%load static%}
+{% block content %}
+<div class="jumbotron hoverone"><a href="{% url 'transactions' "active" %}">
+<h1 style="color:#483C32">active transactions</h1></a>
+</div>
+<div class="jumbotron hoverone" ><a href="{% url 'transactions' "notactive" %}">
+<h1 style="color:#483C32">Not active transactions</h1></a>
+</div>
+
+{% endblock %}

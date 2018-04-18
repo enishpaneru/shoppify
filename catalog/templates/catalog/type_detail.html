@@ -1,0 +1,92 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="col-md-4 single-right-left ">
+<div class="grid images_3_of_2">
+ <div class="flexslider">
+
+   <ul class="slides">
+     <li data-thumb="{{ type.type_pic.url }}">
+       <div class="thumb-image"> <img src="{{ type.type_pic.url }}" data-imagezoom="true" class="img-responsive"> </div>
+     </li>
+
+   </ul>
+   <div class="clearfix"></div>
+ </div>
+</div>
+</div>
+<div class="col-md-8 single-right-left simpleCart_shelfItem">
+   <h3>Name: {{ type.name }}</h3>
+
+
+
+     <p><span class="item_price">Detail: {{ type.detail }} </span> </p>
+
+   </div>
+<hr style="border:2px solid white ">
+<div class="row">
+  <p style="text-align:center;font-size:1.5em;"><strong><u>Dresses with this type</u></strong></p>
+  {% if dress_list %}
+  {% for dress in dress_list %}
+      <div class="single-pro">
+  			<div class="col-md-3 product-men">
+  								<div class="men-pro-item simpleCart_shelfItem">
+  									<div class="men-thumb-item">
+  										<img src="{{ dress.dress_pic.url }}" alt="" class="pro-image-front" height="300px" width="600px">
+                      {% if dress.dress_pic2%}
+                      <img src="{{ dress.dress_pic2.url }}" alt="" class="pro-image-back" height="300px" width="600px">
+                      {%endif%}
+  											<div class="men-cart-pro">
+  												<div class="inner-men-cart-pro">
+  													<a href="{{ dress.get_absolute_url }}" class="link-product-add-cart">Quick View</a>
+  												</div>
+  											</div>
+
+  									</div>
+  									<div class="item-info-product ">
+  										<h4><a href="#">{{ dress.name }}</a></h4>
+                                          <h4><a href="single.html">{{ dress.type }}</a></h4>
+
+  										<div class="info-product-price">
+  											<span class="item_price">Rs. {{ dress.price }}</span>
+  										</div>
+  										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+  															<form action="#" method="post">
+
+  																	<input type="submit" name="submit" value="Place a Bid" class="button" />
+
+  															</form>
+  														</div>
+
+  									</div>
+  								</div>
+  							</div>
+              </div>
+          {% endfor %}
+   {% else %}
+        <p>There are no dresses of this type.</p>
+      {% endif %}
+
+</div>
+{% if dress_list.has_other_pages %}
+  <ul class="pagination">
+    {% if dress_list.has_previous %}
+      <li><a href="?page={{ dress_list.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in dress_list.paginator.page_range %}
+      {% if dress_list.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if dress_list.has_next %}
+      <li><a href="?page={{ dress_list.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+
+{% if book_list %}
+{% for book in book_list %}
+    <div class="single-pro">
+			<div class="col-md-3 product-men">
+								<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-thumb-item">
+										<img src="{{ book.dress.dress_pic.url }}" alt="" class="pro-image-front">
+                    {% if book.dress.dress_pic2%}
+										<img src="{{ book.dress.dress_pic2.url }}" alt="" class="pro-image-back">
+                    {%endif%}
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="{{ book.dress.get_absolute_url }}" class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
+
+									</div>
+									<div class="item-info-product ">
+										<h4><a href="#">{{ book.dress.name }}</a></h4>
+                                        <h4><a href="single.html">{{ book.dress.type }}</a></h4>
+
+										<div class="info-product-price">
+											<span class="item_price">Rs. {{ book.dress.price }}</span>
+										</div>
+										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+															<form action="#" method="post">
+
+																	<input type="submit" name="submit" value="Place a Bid" class="button" />
+
+															</form>
+														</div>
+
+									</div>
+								</div>
+							</div>
+        {% endfor %}
+ {% else %}
+      <p>You have not booked any dresses</p>
+        <a class="hvr-outline-out button2" href="{% url 'dresses' %}">Click here to view all dresses </a>
+    {% endif %}
+    {% if book_list.has_other_pages %}
+      <ul class="pagination">
+        {% if book_list.has_previous %}
+          <li><a href="?page={{ book_list.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in book_list.paginator.page_range %}
+          {% if book_list.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }} ">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if book_list.has_next %}
+          <li><a href="?page={{ book_list.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+
+    {% endif %}
+{% endblock %}

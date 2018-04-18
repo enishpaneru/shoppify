@@ -1,0 +1,16 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+<div class="next">
+<form  action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+
+    </table>
+    
+    <input type="submit" value="Submit" />
+
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+<div style="text-align:right">
+<form method="GET" action="{% url 'dresses' %}">
+{% csrf_token %}
+
+<div>
+
+  <td><input type="text" name="search" value="{{searchvalue}}" /></td>
+
+  <input type="submit" value="search" />
+
+
+</div>
+</form>
+</div>
+<div class="page-head_agile_info_w3l">
+		<div class="container">
+			<h3>All <span>Dresses </span></h3>
+	</div>
+</div>
+
+{% if dress_list %}
+{% for dress in dress_list %}
+    <div class="single-pro">
+			<div class="col-md-3 product-men">
+								<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-thumb-item">
+										<img src="{{ dress.dress_pic.url }}" alt="" class="pro-image-front" height="300px" width="600px">
+                    {% if dress.dress_pic2%}
+                    <img src="{{ dress.dress_pic2.url }}" alt="" class="pro-image-back" height="300px" width="600px">
+                    {%endif%}
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="{{ dress.get_absolute_url }}" class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
+
+									</div>
+									<div class="item-info-product ">
+										<h4><a href="#">{{ dress.name }}</a></h4>
+                                        <h4><a href="single.html">{{ dress.type }}</a></h4>
+
+										<div class="info-product-price">
+											<span class="item_price">Rs. {{ dress.price }}</span>
+										</div>
+										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+															<form action="#" method="post">
+
+																	<input type="submit" name="submit" value="Place a Bid" class="button" />
+
+															</form>
+														</div>
+
+									</div>
+								</div>
+							</div>
+            </div>
+        {% endfor %}
+ {% else %}
+      <p>There are no dresses in the store.</p>
+    {% endif %}
+    {% if dress_list.has_other_pages %}
+    <div class="clearfix">
+      <ul class="pagination">
+        {% if dress_list.has_previous %}
+          <li><a href="?page={{ dress_list.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in dress_list.paginator.page_range %}
+          {% if dress_list.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}&searchvalue={{searchvalue}} ">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if dress_list.has_next %}
+          <li><a href="?page={{ dress_list.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+</div>
+    {% endif %}
+{% endblock %}

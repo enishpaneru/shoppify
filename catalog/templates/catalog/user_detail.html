@@ -1,0 +1,24 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+<div class="row img-rounded" style="background-color:gainsboro"><div class="col-sm-7">
+
+
+  <!-- author detail link not yet defined -->
+  <p><strong>Username:</strong> {{ user.username }}</p>
+  <p><strong>Location</strong>{{ detail.location }}</p>
+    <p><strong>contact_info</strong>{{ detail.contact_info }}</p>
+</div>
+<div class="col-sm-5">
+  <img src="{{user.user_pic.url}}" style="background:radial-gradient(ellipse,rgba(72, 60, 50,1),rgba(72, 60, 50,0));width:100%;">
+</div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

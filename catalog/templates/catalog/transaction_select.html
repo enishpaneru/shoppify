@@ -1,0 +1,39 @@
+{% extends "base_generic_owner.html" %}
+{%load static%}
+{% block content %}
+   <div class="banner_bottom_agile_info">
+	    <div class="container">
+            <div class="banner_bottom_agile_info_inner_w3ls">
+    	           <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+    	           <a href="{% url 'transactions' "active" %}">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/transactions2.jpg' %}" alt=" " class="img-responsive" height = 300px width = 600px/>
+							<figcaption>
+								<h3><span>Active</span> Transactions</h3>
+								<p>View Active Transactions</p>
+							</figcaption>
+						</figure>
+					</a>
+					</div>
+
+					 <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
+					 <a href="{% url 'transactions' "notactive" %}">
+						<figure class="effect-roxy">
+							<img src="{% static 'images/inacticve.jpg' %}" alt=" " class="img-responsive" />
+							<figcaption>
+								<h3><span>Inactive </span> Tranasactions</h3>
+								<p>View inactive transactions</p>
+							</figcaption>
+						</figure>
+						</a>
+					</div>
+					<div class="clearfix"></div>
+
+
+
+
+		    </div>
+		 </div>
+    </div>
+
+{% endblock %}

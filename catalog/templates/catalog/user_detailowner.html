@@ -1,0 +1,25 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+<div class="row img-rounded" style="background-color:gainsboro"><div class="col-sm-7">
+  <h1>Name: {{ user.username }}</h1>
+
+  <!-- author detail link not yet defined -->
+
+
+</div>
+
+</div>
+
+
+
+
+<form method="get"><div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a name="test" href="{%url 'user_update' user.id%} "style="color:black;">edit this user</a></div></form>
+
+  <form method="get"><div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a name="test" href="{%url 'user_delete' user.id%} "style="color:black;">Delete this user</a></div></form>
+  <div style="font-size:2em;background:linear-gradient(to right,rgba(220, 220,220,1),rgba(220,220,220,0));width:18%;margin-top:2%;border-radius:5%;"><a href="{%url 'password_reset'%} "style="color:black;">Send password reset mail</a></div>
+
+
+
+
+{% endblock %}

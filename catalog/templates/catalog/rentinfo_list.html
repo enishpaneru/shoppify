@@ -1,0 +1,63 @@
+<!--oi malai yo page ma k k info halne nai thah vayena, class diagram herera haldeko hai halka fulka------>
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+{% if rentinfo_list %}
+
+
+
+
+    <div class="bs-docs-example">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>S.N.</th>
+                            <th>Rent ID</th>
+                            <th>Transaction ID</th>
+							<th>Fine</th>
+							<th>Insurance claim status</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{% for rentinfo in rentinfo_list %}<tr>
+							<td>1</td>
+							<td><a href="#">{{rentinfo.id}}</a></td>
+                            <td><a href="{%url 'transaction-detail' rentinfo.transaction.id %}">{{rentinfo.transaction.id}}</a></td>
+							<td>Rs.{{rentinfo.fine}}</td>
+							<td>{{rentinfo.insuranceclaimstatus}}</td>
+
+						</tr>
+{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+      {% else %}
+        <p>There are no rentinfos in the store.</p>
+      {% endif %}
+
+
+
+  {% if rentinfo_list.has_other_pages %}
+    <ul class="pagination">
+      {% if rentinfo_list.has_previous %}
+        <li><a href="?page={{ rentinfo_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in rentinfo_list.paginator.page_range %}
+        {% if rentinfo_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if rentinfo_list.has_next %}
+        <li><a href="?page={{ rentinfo_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}

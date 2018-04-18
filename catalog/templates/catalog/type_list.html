@@ -1,0 +1,70 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div >
+<form method="GET" action="{% url 'types' %}">
+{% csrf_token %}
+
+<div style="text-align:right;">
+
+
+  <td><input type="text"  name="search"/></td>
+
+  <input type="submit" value="search" />
+
+</div>
+</form></div>
+<br>
+
+
+
+{% if type_list %}
+{% for type in type_list %}
+    <div class="single-pro">
+      <div class="col-md-3 product-men">
+                <div class="men-pro-item simpleCart_shelfItem">
+                  <div class="men-thumb-item">
+                    <img src="{{ type.type_pic.url }}" alt="" class="pro-image-front">
+
+                      <div class="men-cart-pro">
+                        <div class="inner-men-cart-pro">
+                          <a href="{%url 'type-detail' type.id %}" class="link-product-add-cart">Quick View</a>
+                        </div>
+                      </div>
+
+                  </div>
+                  <div class="item-info-product ">
+                    <h4><a href="#">{{ type.name }}</a></h4>
+
+
+
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+ {% else %}
+      <p>There are no typees in the store.</p>
+    {% endif %}
+
+  {% if type_list.has_other_pages %}
+    <ul class="pagination">
+      {% if type_list.has_previous %}
+        <li><a href="?page={{ type_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in type_list.paginator.page_range %}
+        {% if type_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if type_list.has_next %}
+        <li><a href="?page={{ type_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}

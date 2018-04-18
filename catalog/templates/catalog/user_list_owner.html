@@ -1,0 +1,74 @@
+<!--yo pagination haru her hai majalei---->
+{% extends "base_generic_owner.html" %}
+{% load static %}
+{% block content %}
+
+<div><a href="{% url 'user_create'%}">Add user</a></div>
+<div >
+<form method="GET" action="{% url 'users' %}">
+{% csrf_token %}
+
+<div style="text-align:right;">
+
+
+  <td><input type="text"  name="search"/></td>
+
+  <input type="submit" value="search" />
+
+</div>
+</form></div>
+{% if user_list %}
+    <div class="single-pro">
+      {% for user in user_list %}
+			<div class="col-md-3 product-men">
+								<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-thumb-item">
+										<img src="{% static 'images/m1.jpg' %}" alt="" class="pro-image-front">
+										<img src="{% static 'images/m1.jpg' %}" alt="" class="pro-image-back">
+
+
+
+									</div>
+									<div class="item-info-product ">
+										<h4><a href="{%url 'user-detail-owner' user.id %}">{{ user.username }}</a></h4>
+
+
+
+									</div>
+								</div>
+							</div>
+    {% endfor %}
+      {% else %}
+
+      <div class="col-sm-6 newsleft">
+				<h3>There are no current users</h3>
+			</div>
+
+
+
+
+       {% if user_list.has_other_pages %}
+    <ul class="pagination">
+      {% if user_list.has_previous %}
+        <li><a href="?page={{ user_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in user_list.paginator.page_range %}
+        {% if user_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if user_list.has_next %}
+        <li><a href="?page={{ user_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+      {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+{%if prebook == 0%}
+<h1 style="text-align:center">You already have placed a bid on this dress.<br>Try Another dress instead</h1>
+<ul style="display:inline;"><li style="background-color:gainsboro;transform:translate(600%,0%)" ><a href="{{request.META.HTTP_REFERER}}">Go back</a></li></ul>
+{%else%}
+				<!-- Modal content-->
+				<div class="modal-content">
+
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-12 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign">Book <span>Form</span></h3>
+						 <form action="" method="post">
+							 {% csrf_token %}
+							<div class="styled-input agile-styled-input-top">
+								<input type="number" name="price" required="">
+								<label>Bid your price</label>
+								<span></span>
+							</div><br>
+														 <div class="styled-input agile-styled-input-top">
+								<input type="number" name="daysno" required="">
+								<label>Enter the number of days you'll be renting the days for</label>
+								<span></span>
+							</div><br>
+														 <div class="styled-input agile-styled-input-top">
+								<input type="date" name="reqdate" required="" style="text-align:center;">
+								<label>Enter the date you want the dress to be delivered</label>
+								<span></span>
+							</div><br>
+							<div>{%for key,value in form.errors.items %}{{value}}{%endfor%}</div>
+
+
+
+							<input type="submit" value="Book">
+						</form>
+</div>
+														<div class="clearfix"></div>
+
+
+						</div>
+
+						<div class="clearfix"></div>
+					</div>
+
+        {%endif%}
+				<!-- //Modal content-->
+			{% endblock %}
+
+<!-- //Modal2 -->

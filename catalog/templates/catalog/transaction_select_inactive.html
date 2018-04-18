@@ -1,0 +1,47 @@
+{% extends "base_generic_owner.html" %}
+{% load static %}
+{% block content %}
+    <div class="bs-docs-example">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>S.N.</th>
+                            <th>Uploaded By</th>
+                            <th>Rented By</th>
+							<th>Date</th>
+							<th>Transaction Type</th>
+							<th>Transaction ID</th>
+							<th>Days Rented</th>
+							<th>Total Price</th>
+                            <th>Return status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td><a href="#">Neharika Shrestha</a></td>
+                            <td><a href="#">Arpana Bhujel</a></td>
+							<td>2017/05/23</td>
+							<td>Manual</td>
+                            <td>0225452</td>
+							<td>2</td>
+							<td>Rs. 800</td>
+                            <td>Yes</td>
+						</tr>
+
+                        <tr>
+							<td>2</td>
+							<td><a href="#">Monika Lama</a></td>
+                            <td><a href="#">Poonam Kadel</a></td>
+							<td>2017/04/21</td>
+							<td>Via Office</td>
+                            <td>0225453</td>
+							<td>3</td>
+							<td>Rs. 1000</td>
+                            <td>No</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+{% endblock %}

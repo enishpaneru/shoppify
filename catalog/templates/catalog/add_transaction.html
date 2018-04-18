@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-8 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign"><span>Enter The</span> Details</h3>
+						 <form action="" method="post">
+							 {% csrf_token %}
+							<div class="styled-input agile-styled-input-top">
+								<input type="number" name="price" required="">
+								<label>Price</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="number" name="daysno" required="">
+								<label>No. of Days</label>
+								<span></span>
+							</div>
+							<div class="styled-input">
+								<input type="date" name="reqdate" required="">
+								<label>Request Date</label>
+								<span></span>
+							</div>
+
+							<input type="submit" value="Submit">
+						</form>
+
+														<div class="clearfix"></div>
+
+
+						</div>
+
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+
+		{% endblock %}
+<!-- //Modal2 -->

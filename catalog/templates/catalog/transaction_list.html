@@ -1,0 +1,61 @@
+{% extends "base_generic_owner.html" %}
+
+{% block content %}
+
+
+{% if transaction_list %}
+
+    <div class="bs-docs-example">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>S.N.</th>
+                            <th>Transaction ID</th>
+                            <th>Dress</th>
+              <th>Renter</th>
+              <th>Transaction Date</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for transaction in transaction_list %}<tr>
+              <td>1</td>
+              <td><a href="{%url 'transaction-detail' transaction.id %}">{{transaction.id}}</a></td>
+                            <td><a href="{%url 'dress-detail-owner' transaction.dress.id %}">{{transaction.dress.name}}</a></td>
+              <td>{{transaction.renter}}</td>
+              <td>{{transaction.transactiondate}}</td>
+
+            </tr>
+{% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+        <p>There are no transactions in the store.</p>
+      {% endif %}
+
+
+
+  {% if transaction_list.has_other_pages %}
+    <ul class="pagination">
+      {% if transaction_list.has_previous %}
+        <li><a href="?page={{ transaction_list.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in transaction_list.paginator.page_range %}
+        {% if transaction_list.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if transaction_list.has_next %}
+        <li><a href="?page={{ transaction_list.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+{% endblock %}

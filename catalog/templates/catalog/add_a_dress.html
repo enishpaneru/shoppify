@@ -1,0 +1,64 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+				<!-- Modal content-->
+				<div class="modal-content">
+
+						<div class="modal-body modal-body-sub_agile">
+						<div class="col-md-12 modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign"> <span>Add a new</span> Dress</h3>
+						 <form enctype="multipart/form-data" action="" method="post">
+               {% csrf_token %}
+							<div class="styled-input agile-styled-input-top">
+								{{form.name}}
+								<label>Name</label>
+								<span></span>
+							</div>
+
+                             <div class="color-quality">
+						<div class="color-quality-right">
+							<h5>Type :</h5>
+							{{form.type}}
+						</div>
+					</div>
+
+							<br><br>
+                           <label>Enter front dress pic</label><input type="file" name="dress_pic" value="Upload front Dress Picture" class="button">
+                           <label>Enter back dress pic</label><input type="file" name="dress_pic2" value="Upload back Dress Picture" class="button">
+                        <div class="clearfix"></div>
+                              <br><br>
+                             <div class="styled-input agile-styled-input-top">
+								<input type="text" name="detail" required="">
+								<label>Details</label>
+								<span></span>
+							</div>
+                             <br>
+                             <div class="styled-input agile-styled-input-top">
+								<input type="number" name="price" required="">
+								<label>Price</label>
+								<span></span>
+							</div>
+
+                             <br>
+                             <div class="styled-input agile-styled-input-top">
+								<input type="number" name="rentday" required="">
+								<label>Total renting days you could afford </label>
+								<span></span>
+							</div>
+
+
+							<input type="submit" value="Submit">
+              <div>{%for key,value in form.errors.items %}{{value}}{%endfor%}</div>
+						</form>
+
+														<div class="clearfix"></div>
+
+						</div>
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!-- //Modal content-->
+	{% endblock %}
+
+<!-- //Modal2 -->

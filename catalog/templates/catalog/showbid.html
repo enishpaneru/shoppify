@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+  {% if bids %}
+  {% for bid in bids %}
+      <div class="single-pro">
+			<div class="col-md-3 product-men">
+								<div class="men-pro-item simpleCart_shelfItem">
+									<div class="men-thumb-item">
+										<img src="{% static 'images/m1.jpg' %}" alt="" class="pro-image-front">
+										<img src="{% static 'images/m1.jpg' %}" alt="" class="pro-image-back">
+
+
+
+									</div>
+									<div class="item-info-product ">
+										<h4><a href="{% url 'user-detail' bid.user.id %}">{{bid.user.username}}</a></h4>
+<a href="{%url 'givebid' bid.id%}">
+										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+<p style="font-family:rockwell;">Give bid to this user</p>
+</div></a>
+
+									</div>
+								</div>
+							</div>
+            </div>
+              {% endfor %}
+            {% else %}
+              <p>There are no bides for this dress.</p>
+            {% endif %}
+  {% endblock %}
